@@ -59,18 +59,29 @@ export class LinkedListGroup implements ISortable {
     // Implement this part yourself
     let counter: number = 0;
     let node: Node | null = this.head;
-    if (counter < rightPos) {
-      counter++;
+    while(node && counter < rightPos) {
+      if(node.data > node.next.data) {
+        counter++;
+        node = node.next;
+        return true;
+      } else {
+        counter++;
+        node = node.next;
+        return false;
+      }
     }
-    return node.data > node.next.data;
   }
 
   swap(leftPos: number, rightPos: number): void {
     // Implement this part yourself
+    let counter: number = 0;
     let node: Node | null = this.head;
-    let tempLeft: number = node.data;
-    node.data = node.next.data;
-    node.next.data = tempLeft;
+    while(node && counter < rightPos) {
+      let tempLeft: number = node.data;
+      node.data = node.next.data;
+      node.next.data = tempLeft;
+      counter++;
+    }
   }
 
   print(): void {
